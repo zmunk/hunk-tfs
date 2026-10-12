@@ -12,7 +12,6 @@ import {
 import { parseTfsPrInvocation, TFS_PR_HELP } from "./src/cli.ts";
 import { buildUnifiedPatch } from "./src/build-patch.ts";
 import { buildAgentContextFromThreads } from "./src/agent-context.ts";
-import { CommentsPane } from "./src/comments-pane.tsx";
 import {
   defaultDiscoveryRuntime,
   discoverGitRepository,
@@ -410,17 +409,6 @@ export function createHunkTfsExtension(
 
     hunk.registerVcsAdapter(createTfsVcsAdapter());
 
-    hunk.registerPane({
-      id: "comments",
-      title: "hunk-tfs",
-      defaultOpen: true,
-      placement: "right",
-      width: { preferred: 42, min: 28, max: 72 },
-      available: ({ review }) =>
-        review?.kind === "change-request" && review.provider === "hunk-tfs",
-      component: CommentsPane,
-    });
-
     hunk.registerLineHighlighter({
       id: "tfs-comments",
       highlight({ file }) {
@@ -437,13 +425,6 @@ export function createHunkTfsExtension(
         return marks.length > 0 ? marks : null;
       },
     });
-
-    hunk.registerCommand(
-      { id: "toggle-comments", title: "Toggle TFS comments pane", key: "ctrl+shift+c" },
-      (ctx) => {
-        ctx.panes.toggle("comments");
-      },
-    );
 
     hunk.on("shutdown", () => {
       if (retired) return;

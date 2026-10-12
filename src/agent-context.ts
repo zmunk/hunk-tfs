@@ -70,7 +70,7 @@ export function buildAgentContextFromThreads(
     version: 1,
     summary:
       general > 0
-        ? `TFS PR #${pullRequestId}: ${anchored} inline comment${anchored === 1 ? "" : "s"}, ${general} general thread${general === 1 ? "" : "s"} (see Comments pane).`
+        ? `TFS PR #${pullRequestId}: ${anchored} inline comment${anchored === 1 ? "" : "s"}, ${general} general thread${general === 1 ? "" : "s"} (not displayed).`
         : `TFS PR #${pullRequestId}: ${anchored} inline review comment${anchored === 1 ? "" : "s"}.`,
     files,
   };

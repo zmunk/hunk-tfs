@@ -60,7 +60,7 @@ export interface TfsThreadComment {
   readonly publishedDate?: string;
 }
 
-/** One non-system PR discussion thread, ready for the Comments pane. */
+/** One non-system PR discussion thread with an optional file position. */
 export interface TfsReviewThread {
   readonly id: number;
   readonly status: string;

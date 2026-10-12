@@ -1,6 +1,6 @@
 # hunk-tfs
 
-Review **Azure DevOps Server / TFS** Git pull requests inside [Hunk](https://hunk.dev). It opens the PR diff, maps every positioned TFS comment to a separate read-only Hunk annotation, and keeps full threads (including unpositioned threads) in a comments pane.
+Review **Azure DevOps Server / TFS** Git pull requests inside [Hunk](https://hunk.dev). It opens the PR diff and maps every positioned TFS comment to a separate read-only Hunk annotation.
 
 ## Requirements
 
@@ -81,9 +81,8 @@ Supported remotes are HTTP(S) URLs shaped as `{collection}/{project}/_git/{repos
 Only active comment threads are loaded by default. Pass `--all-comments` to include all non-active threads too.
 
 - Every non-system, non-deleted positioned comment is stacked as its own annotation at the thread range.
-- The **hunk-tfs** pane shows complete threads; `j`/`k` move and Enter jumps to a positioned thread.
-- `ctrl+shift+c` toggles the comments pane.
-- Unpositioned threads remain in the pane and do not create artificial annotations.
+- Commented lines are highlighted in the diff.
+- Unpositioned threads are not displayed and do not create artificial annotations.
 
 ## How it works
 

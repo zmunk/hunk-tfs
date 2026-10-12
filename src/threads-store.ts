@@ -6,31 +6,12 @@ export interface ThreadsSnapshot {
 }
 
 let snapshot: ThreadsSnapshot = { pullRequestId: "", threads: [] };
-const listeners = new Set<() => void>();
-
-function emit(): void {
-  for (const listener of listeners) listener();
-}
-
 export function setThreads(pullRequestId: string, threads: readonly TfsReviewThread[]): void {
   snapshot = { pullRequestId, threads: Object.freeze([...threads]) };
-  emit();
 }
 
 export function clearThreads(): void {
   snapshot = { pullRequestId: "", threads: [] };
-  emit();
-}
-
-export function getThreadsSnapshot(): ThreadsSnapshot {
-  return snapshot;
-}
-
-export function subscribeThreads(listener: () => void): () => void {
-  listeners.add(listener);
-  return () => {
-    listeners.delete(listener);
-  };
 }
 
 /** Threads that touch a given review path (leading slash tolerant). */
